@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { AlertTriangle, Users, TrendingDown, Calendar } from "lucide-react";
+import * as RadixIcons from "@radix-ui/react-icons";
 import { useLocation } from "wouter";
 
 interface BurnoutAlertsProps {
@@ -21,10 +21,10 @@ export default function BurnoutAlertsPanel({ data }: BurnoutAlertsProps) {
   
   const getRiskColor = (risk: string) => {
     switch (risk) {
-      case 'medium': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-      case 'high': return 'bg-orange-100 text-orange-800 border-orange-200';
-      case 'critical': return 'bg-red-100 text-red-800 border-red-200';
-      default: return 'bg-gray-100 text-gray-800 border-gray-200';
+      case 'medium': return 'bg-accent text-foreground border-border';
+      case 'high': return 'bg-accent text-foreground border-border';
+      case 'critical': return 'bg-accent text-foreground border-border';
+      default: return 'bg-muted text-muted-foreground border-border';
     }
   };
 
@@ -40,14 +40,14 @@ export default function BurnoutAlertsPanel({ data }: BurnoutAlertsProps) {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <AlertTriangle className="h-5 w-5" />
+          <RadixIcons.ExclamationTriangleIcon className="h-5 w-5" />
           Burnout Risk Alerts
         </CardTitle>
       </CardHeader>
       <CardContent>
         {data.length === 0 ? (
-          <div className="text-center py-8 text-gray-500">
-            <Users className="h-12 w-12 mx-auto mb-2 opacity-50" />
+          <div className="text-center py-8 text-muted-foreground">
+            <RadixIcons.PersonIcon className="h-10 w-10 mx-auto mb-2 opacity-50" />
             No burnout alerts. All staff appear to be in good mental health.
           </div>
         ) : (
@@ -55,7 +55,7 @@ export default function BurnoutAlertsPanel({ data }: BurnoutAlertsProps) {
             {data.map((staff) => (
               <div key={staff.staffId} className={`border rounded-lg p-4 ${getRiskColor(staff.riskLevel)}`}>
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-medium">{staff.staffName}</h3>
+                  <h3 className="font-medium text-foreground">{staff.staffName}</h3>
                   <div className="flex items-center gap-2">
                     <Badge variant={getUrgencyColor(staff.interventionUrgency)}>
                       {staff.interventionUrgency}
@@ -68,18 +68,18 @@ export default function BurnoutAlertsPanel({ data }: BurnoutAlertsProps) {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
                   <div className="space-y-2">
-                    <div className="text-sm">
+                    <div className="text-sm text-foreground">
                       <span className="font-medium">Burnout Probability:</span> {staff.burnoutProbability}%
                     </div>
-                    <div className="text-sm">
+                    <div className="text-sm text-foreground">
                       <span className="font-medium">Turnover Risk:</span> {staff.predictedTurnoverRisk}%
                     </div>
                   </div>
                   
                   <div className="space-y-1">
-                    <div className="text-sm font-medium">Recommended Actions:</div>
+                    <div className="text-sm font-medium text-foreground">Recommended Actions:</div>
                     {staff.recommendations.slice(0, 2).map((rec, index) => (
-                      <div key={index} className="text-xs bg-white/70 p-2 rounded border-l-2 border-blue-400">
+                      <div key={index} className="text-xs bg-secondary/10 p-2 rounded border-l-2 border-secondary text-foreground">
                         {rec}
                       </div>
                     ))}
@@ -87,16 +87,17 @@ export default function BurnoutAlertsPanel({ data }: BurnoutAlertsProps) {
                 </div>
                 
                 <div className="flex gap-2">
-                  <Button size="sm" variant="outline">
-                    <Calendar className="h-3 w-3 mr-1" />
+                  <Button size="sm" variant="outline" className="border-border">
+                    <RadixIcons.CalendarIcon className="h-3 w-3 mr-1" />
                     Schedule Check-in
                   </Button>
                   <Button 
                     size="sm" 
                     variant="outline"
+                    className="border-border"
                     onClick={() => setLocation(`/all-assessments?staff=${staff.staffId}`)}
                   >
-                    <TrendingDown className="h-3 w-3 mr-1" />
+                    <RadixIcons.ArrowDownIcon className="h-3 w-3 mr-1" />
                     View History
                   </Button>
                 </div>
