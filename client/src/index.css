@@ -1,0 +1,299 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Logo carousel animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+/* Make white parts of logos transparent */
+.logo-transparent-white {
+  mix-blend-mode: multiply;
+}
+
+/* Dynamic color-based hover animations */
+.card-hover {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+/* Red component hover */
+.card-hover.border-red-200:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px rgba(220, 38, 38, 0.25), 0 8px 16px -6px rgba(220, 38, 38, 0.15);
+  border-color: rgb(252, 165, 165);
+}
+
+.card-hover.border-red-300:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px rgba(220, 38, 38, 0.35), 0 8px 16px -6px rgba(220, 38, 38, 0.25);
+  border-color: rgb(248, 113, 113);
+}
+
+/* Emerald component hover */
+.card-hover.border-emerald-200:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px rgba(16, 185, 129, 0.25), 0 8px 16px -6px rgba(16, 185, 129, 0.15);
+  border-color: rgb(110, 231, 183);
+}
+
+/* Red component hover */
+.card-hover.border-red-200:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px rgba(239, 68, 68, 0.25), 0 8px 16px -6px rgba(239, 68, 68, 0.15);
+  border-color: rgb(252, 165, 165);
+}
+
+/* Default fallback hover */
+.card-hover:hover:not(.border-red-200):not(.border-red-300):not(.border-green-200):not(.border-green-300) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px rgba(220, 38, 38, 0.20), 0 8px 16px -6px rgba(220, 38, 38, 0.12);
+  border-color: rgb(252, 165, 165);
+}
+
+/* Float animation for assessment score circle */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Progress bar animation */
+@keyframes progressLoad {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: var(--progress-width);
+  }
+}
+
+.progress-animate {
+  animation: progressLoad 1.5s ease-out forwards;
+}
+
+/* Ripple effect for buttons */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(0, 0%, 15%);
+  --muted: hsl(0, 0%, 95%);
+  --muted-foreground: hsl(0, 0%, 45%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(0, 0%, 15%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(0, 0%, 15%);
+  --border: hsl(0, 0%, 88%);
+  --input: hsl(0, 0%, 88%);
+  --primary: hsl(0, 72%, 51%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(142, 71%, 45%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(0, 0%, 96%);
+  --accent-foreground: hsl(0, 0%, 15%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --ring: hsl(0, 72%, 51%);
+  --radius: 0.75rem;
+
+  /* Christmas specific colors */
+  --christmas-red: hsl(0, 72%, 51%);
+  --christmas-green: hsl(142, 71%, 45%);
+  --christmas-white: hsl(0, 0%, 100%);
+  --christmas-success: hsl(142, 71%, 45%);
+  --christmas-warning: hsl(32, 95%, 60%);
+  --christmas-error: hsl(0, 72%, 51%);
+  --christmas-neutral: hsl(0, 0%, 95%);
+}
+
+.dark {
+  --background: hsl(0, 0%, 5%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(0, 0%, 15%);
+  --muted-foreground: hsl(0, 0%, 65%);
+  --popover: hsl(0, 0%, 5%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(0, 0%, 5%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(0, 0%, 15%);
+  --input: hsl(0, 0%, 15%);
+  --primary: hsl(0, 72%, 51%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(142, 71%, 45%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(0, 0%, 15%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(0, 72%, 51%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-white text-foreground;
+  }
+
+  /* Custom slider styles */
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-webkit-slider-track {
+    background: hsl(220, 13%, 91%);
+    height: 8px;
+    border-radius: 4px;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: hsl(0, 72%, 51%);
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-moz-range-track {
+    background: hsl(220, 13%, 91%);
+    height: 8px;
+    border-radius: 4px;
+    border: none;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    background: hsl(0, 72%, 51%);
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+  }
+}
+
+@layer components {
+  .healthcare-card {
+    @apply bg-white rounded-lg sm:rounded-xl shadow-sm border border-slate-200;
+  }
+
+  .healthcare-button-primary {
+    @apply bg-red-600 hover:bg-red-700 text-white font-medium transition-all duration-200 px-4 py-2 rounded-lg text-sm sm:text-base;
+  }
+
+  .healthcare-button-primary:hover {
+    box-shadow: 0 8px 20px -4px rgba(220, 38, 38, 0.4), 0 4px 12px -2px rgba(220, 38, 38, 0.2);
+    transform: translateY(-1px);
+  }
+
+  .healthcare-button-secondary {
+    @apply bg-green-600 hover:bg-green-700 text-white font-medium transition-colors px-4 py-2 rounded-lg text-sm sm:text-base;
+  }
+
+  .healthcare-input {
+    @apply px-3 py-2 sm:px-4 sm:py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-colors text-sm sm:text-base;
+  }
+  
+  /* Mobile-first responsive utilities */
+  .mobile-container {
+    @apply px-4 mx-auto max-w-sm sm:max-w-none sm:px-6 lg:px-8;
+  }
+  
+  .mobile-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6;
+  }
+  
+  .mobile-text-responsive {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+  
+  .mobile-heading-responsive {
+    @apply text-lg sm:text-xl lg:text-2xl;
+  }
+  
+  .mobile-padding-responsive {
+    @apply p-3 sm:p-4 lg:p-6;
+  }
+  
+  .mobile-spacing-responsive {
+    @apply space-y-3 sm:space-y-4 lg:space-y-6;
+  }
+  
+  /* Touch-friendly interactive elements */
+  .mobile-touch-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+  
+  /* Mobile-optimized form elements */
+  .mobile-form-field {
+    @apply w-full text-base leading-relaxed;
+  }
+  
+  .mobile-radio-group {
+    @apply space-y-3 sm:space-y-4;
+  }
+  
+  .mobile-checkbox-group {
+    @apply space-y-2 sm:space-y-3;
+  }
+}
