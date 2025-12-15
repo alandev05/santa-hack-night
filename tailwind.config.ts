@@ -84,6 +84,12 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      boxShadow: {
+        "mac-red": "0 4px 12px rgba(220, 38, 38, 0.3), 0 0 20px rgba(220, 38, 38, 0.2)",
+        "mac-green": "0 4px 12px rgba(16, 185, 129, 0.3), 0 0 20px rgba(16, 185, 129, 0.2)",
+        "mac-red-hover": "0 8px 24px rgba(220, 38, 38, 0.5), 0 0 30px rgba(220, 38, 38, 0.3)",
+        "mac-green-hover": "0 8px 24px rgba(16, 185, 129, 0.5), 0 0 30px rgba(16, 185, 129, 0.3)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],

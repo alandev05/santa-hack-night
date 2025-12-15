@@ -19,26 +19,26 @@ export function formatDate(date: Date | string): string {
 export function getSentimentColor(sentiment: string): string {
   switch (sentiment?.toLowerCase()) {
     case 'positive':
-      return 'bg-green-100 text-green-800';
+      return 'bg-accent text-foreground border-border';
     case 'negative':
     case 'needs support':
-      return 'bg-red-100 text-red-800';
+      return 'bg-accent text-foreground border-border';
     case 'neutral':
-      return 'bg-amber-100 text-amber-800';
+      return 'bg-muted text-muted-foreground border-border';
     default:
-      return 'bg-gray-100 text-gray-800';
+      return 'bg-muted text-muted-foreground border-border';
   }
 }
 
 export function getStatusColor(status: string): string {
   switch (status?.toLowerCase()) {
     case 'completed':
-      return 'bg-blue-100 text-blue-800';
+      return 'bg-accent text-foreground border-border';
     case 'follow-up scheduled':
-      return 'bg-green-100 text-green-800';
+      return 'bg-accent text-foreground border-border';
     case 'pending':
-      return 'bg-yellow-100 text-yellow-800';
+      return 'bg-muted text-muted-foreground border-border';
     default:
-      return 'bg-gray-100 text-gray-800';
+      return 'bg-muted text-muted-foreground border-border';
   }
 }
