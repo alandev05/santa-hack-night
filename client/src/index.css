@@ -7,6 +7,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-33.333%);
   }
@@ -62,9 +63,12 @@
 
 /* Float animation for assessment score circle */
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-6px);
   }
@@ -79,6 +83,7 @@
   0% {
     width: 0%;
   }
+
   100% {
     width: var(--progress-width);
   }
@@ -118,6 +123,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -129,35 +135,60 @@
 }
 
 :root {
-  --background: hsl(0, 0%, 100%);
+  /* Christmas specific colors - Richer & Festive */
+  --christmas-red: hsl(345, 100%, 35%);
+  /* Deep festive red */
+  --christmas-green: hsl(150, 100%, 25%);
+  /* Deep evergreen */
+  --christmas-gold: hsl(45, 100%, 50%);
+  /* Bright gold */
+  --christmas-white: hsl(0, 0%, 98%);
+  /* Snow white */
+
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+
+  /* Override main background to be transparent to let snow show through */
+  --background: hsla(0, 0%, 100%, 0);
+  --card: hsla(0, 0%, 100%, 0.85);
+  /* Slightly transparent cards */
   --foreground: hsl(0, 0%, 15%);
   --muted: hsl(0, 0%, 95%);
   --muted-foreground: hsl(0, 0%, 45%);
-  --popover: hsl(0, 0%, 100%);
+  --popover: hsla(0, 0%, 100%, 0.9);
   --popover-foreground: hsl(0, 0%, 15%);
-  --card: hsl(0, 0%, 100%);
   --card-foreground: hsl(0, 0%, 15%);
-  --border: hsl(0, 0%, 88%);
-  --input: hsl(0, 0%, 88%);
-  --primary: hsl(0, 72%, 51%);
+  --border: hsla(0, 0%, 100%, 0.5);
+  --input: hsla(0, 0%, 100%, 0.5);
+  --primary: hsl(345, 100%, 40%);
+  /* Festive Red Primary */
   --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(142, 71%, 45%);
+  --secondary: hsl(150, 100%, 28%);
+  /* Evergreen Secondary */
   --secondary-foreground: hsl(0, 0%, 100%);
-  --accent: hsl(0, 0%, 96%);
-  --accent-foreground: hsl(0, 0%, 15%);
+  --accent: hsl(0, 0%, 100%);
+  --accent-foreground: hsl(345, 100%, 35%);
   --destructive: hsl(0, 84.2%, 60.2%);
   --destructive-foreground: hsl(0, 0%, 100%);
-  --ring: hsl(0, 72%, 51%);
-  --radius: 0.75rem;
+  --ring: hsl(345, 100%, 40%);
+  --radius: 1rem;
+  /* Softer, rounder corners for snowglobe feel */
+}
 
-  /* Christmas specific colors */
-  --christmas-red: hsl(0, 72%, 51%);
-  --christmas-green: hsl(142, 71%, 45%);
-  --christmas-white: hsl(0, 0%, 100%);
-  --christmas-success: hsl(142, 71%, 45%);
-  --christmas-warning: hsl(32, 95%, 60%);
-  --christmas-error: hsl(0, 72%, 51%);
-  --christmas-neutral: hsl(0, 0%, 95%);
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* Apply glass effect to all cards by default */
+.card,
+[data-component="card"] {
+  background-color: var(--card) !important;
+  backdrop-filter: blur(8px);
+  border-color: rgba(255, 255, 255, 0.6) !important;
 }
 
 .dark {
@@ -253,46 +284,46 @@
   .healthcare-input {
     @apply px-3 py-2 sm:px-4 sm:py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-colors text-sm sm:text-base;
   }
-  
+
   /* Mobile-first responsive utilities */
   .mobile-container {
     @apply px-4 mx-auto max-w-sm sm:max-w-none sm:px-6 lg:px-8;
   }
-  
+
   .mobile-grid {
     @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6;
   }
-  
+
   .mobile-text-responsive {
     @apply text-sm sm:text-base lg:text-lg;
   }
-  
+
   .mobile-heading-responsive {
     @apply text-lg sm:text-xl lg:text-2xl;
   }
-  
+
   .mobile-padding-responsive {
     @apply p-3 sm:p-4 lg:p-6;
   }
-  
+
   .mobile-spacing-responsive {
     @apply space-y-3 sm:space-y-4 lg:space-y-6;
   }
-  
+
   /* Touch-friendly interactive elements */
   .mobile-touch-target {
     @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
   }
-  
+
   /* Mobile-optimized form elements */
   .mobile-form-field {
     @apply w-full text-base leading-relaxed;
   }
-  
+
   .mobile-radio-group {
     @apply space-y-3 sm:space-y-4;
   }
-  
+
   .mobile-checkbox-group {
     @apply space-y-2 sm:space-y-3;
   }

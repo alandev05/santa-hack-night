@@ -104,7 +104,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-transparent">
       <Header />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -112,8 +112,8 @@ export default function Dashboard() {
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
             <div>
-              <h2 className="text-2xl font-bold text-slate-900">Workshop Dashboard</h2>
-              <p className="text-slate-600">Santa's Workshop Shift Management</p>
+              <h2 className="text-2xl font-bold text-white">Workshop Dashboard</h2>
+              <p className="text-slate-200">Santa's Workshop Shift Management</p>
             </div>
             <Button
               onClick={() => generateScheduleMutation.mutate()}
@@ -136,7 +136,7 @@ export default function Dashboard() {
 
           {/* High Risk Alert Banner */}
           {highRiskAlerts > 0 && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center space-x-3">
+            <div className="bg-red-500/10 border border-red-200 rounded-lg p-4 flex items-center space-x-3">
               <AlertTriangle className="h-5 w-5 text-red-600" />
               <div className="flex-1">
                 <p className="text-red-800 font-medium">
@@ -146,7 +146,7 @@ export default function Dashboard() {
                   Check the Alerts page for recommended rotations.
                 </p>
               </div>
-              <Button variant="outline" size="sm" className="border-red-300 text-red-700 hover:bg-red-100">
+              <Button variant="outline" size="sm" className="border-red-300 text-red-700 hover:bg-red-500/20">
                 <a href="/alerts">View Alerts</a>
               </Button>
             </div>
@@ -154,7 +154,7 @@ export default function Dashboard() {
 
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="border-red-200 bg-red-50">
+            <Card className="border-red-200 bg-red-500/10">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Total Elves</CardTitle>
                 <Users className="h-4 w-4 text-red-600" />
@@ -165,7 +165,7 @@ export default function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card className="border-green-200 bg-green-50">
+            <Card className="border-green-200 bg-green-500/10">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">On Duty Now</CardTitle>
                 <Clock className="h-4 w-4 text-green-600" />
@@ -176,7 +176,7 @@ export default function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card className={`border-red-200 ${highRiskAlerts > 0 ? 'bg-red-100' : 'bg-red-50'}`}>
+            <Card className={`border-red-200 ${highRiskAlerts > 0 ? 'bg-red-500/20' : 'bg-red-500/10'}`}>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Burnout Alerts</CardTitle>
                 <AlertTriangle className="h-4 w-4 text-red-600" />
@@ -191,7 +191,7 @@ export default function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card className="border-green-200 bg-green-50">
+            <Card className="border-green-200 bg-green-500/10">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Today's Orders</CardTitle>
                 <Package className="h-4 w-4 text-green-600" />
@@ -219,18 +219,17 @@ export default function Dashboard() {
                   return (
                     <div
                       key={station.id}
-                      className={`p-4 rounded-lg border-2 ${
-                        isFull ? 'border-green-200 bg-green-50' :
-                        isShort ? 'border-orange-200 bg-orange-50' :
-                        'border-slate-200 bg-slate-50'
-                      }`}
+                      className={`p-4 rounded-lg border-2 ${isFull ? 'border-green-200 bg-green-500/10' :
+                        isShort ? 'border-orange-200 bg-orange-500/10' :
+                          'border-slate-200 bg-slate-500/10'
+                        }`}
                     >
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center space-x-2">
                           <Icon className={`h-5 w-5 ${isFull ? 'text-green-600' : 'text-orange-600'}`} />
                           <h4 className="font-semibold">{station.name}</h4>
                         </div>
-                        <Badge variant={isFull ? "default" : "secondary"} className={isFull ? 'bg-green-600' : 'bg-orange-500'}>
+                        <Badge variant={isFull ? "default" : "secondary"} className={isFull ? 'bg-green-600' : 'bg-orange-500/100'}>
                           {currentStaff}/{station.staffNeeded}
                         </Badge>
                       </div>
@@ -282,9 +281,9 @@ export default function Dashboard() {
                         <td className="py-3">
                           <Badge
                             className={
-                              elf.riskLevel === 'high' ? 'bg-red-100 text-red-700' :
-                              elf.riskLevel === 'medium' ? 'bg-orange-100 text-orange-700' :
-                              'bg-green-100 text-green-700'
+                              elf.riskLevel === 'high' ? 'bg-red-500/20 text-red-700' :
+                                elf.riskLevel === 'medium' ? 'bg-orange-500/20 text-orange-700' :
+                                  'bg-green-500/20 text-green-700'
                             }
                           >
                             {elf.burnoutRisk?.toFixed(1) || 'N/A'} - {elf.riskLevel || 'low'}
